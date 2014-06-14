@@ -1,0 +1,22 @@
+---
+layout: default
+name: blog
+title: Destan Sarpkaya | Blog
+available_categories:
+  - Development,development
+  - News,news
+in_menu: 1
+---
+
+<link href="{{site.url}}/assets/css/blog.css" rel="stylesheet">
+
+<main>
+
+  <h1>Categories</h1>
+  <ul>
+    {% for categ in page.available_categories %}
+      <li><a href="{{categ | split: ',' | last}}">{{categ | split: ',' | first}}</a></li>
+    {% endfor %}
+  </ul>
+
+</main>

@@ -1,0 +1,17 @@
+---
+layout: default
+title: Your New Jekyll Site
+---
+
+<main>
+  <h1>All posts including drafts</h1>
+
+  <section id="posts">
+    <ul>
+      {% for post in site.posts %}
+        <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+</main>

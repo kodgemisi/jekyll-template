@@ -1,0 +1,46 @@
+<!--
+
+To put a page or post into the menu, just add `in_menu` variable to front matter with an integer value which decides the order of the page in the menu. The lower the number the upper the item rendered in the menu.
+
+Sub menu
+========
+
+This menu supports 1 level submenus. To enable submenu for a page use front matter like follows:
+
+in_menu: 2
+children:
+  - 
+    url: "submenu1"
+    title: "Sub menu 1"
+  - 
+    url: "submenu2"
+    title: "Sub menu 2"
+
+* Note that the page having the submenu should have in_menu property.
+* Note that the url is formed like this {{site.url}}/{{child.url}}
+  - If {{site.url}} is empty the it ends up with /{{child.url}}
+
+
+Attention: This menu works with either with pages or posts but NOT with both. By default, menu is for pages. You can copy this menu partial to make a menu for posts. Just change `site.pages` to `site.posts`
+
+Inspired from: http://stackoverflow.com/a/16625534/878361
+-->
+
+<nav>
+  <ul>
+  {% assign sorted_pages = site.pages | sort:"title" | sort:"in_menu" %}
+
+  {% for node in sorted_pages %}
+    {% if node.in_menu != nil %}
+      <li><a href="{{node.url}}">{{node.title}} : {{node.url}}</a></li>
+      {% if node.children != nil %}
+        <ul class="children">
+        {% for child in node.children %}
+          <li><a href="{{site.url}}/{{child.url}}">{{child.title}}</a></li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  </ul>
+</nav>
