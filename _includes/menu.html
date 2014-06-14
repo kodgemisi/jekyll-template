@@ -26,21 +26,39 @@ Attention: This menu works with either with pages or posts but NOT with both. By
 Inspired from: http://stackoverflow.com/a/16625534/878361
 -->
 
-<nav>
-  <ul>
-  {% assign sorted_pages = site.pages | sort:"title" | sort:"in_menu" %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
 
-  {% for node in sorted_pages %}
-    {% if node.in_menu != nil %}
-      <li><a href="{{node.url}}">{{node.title}} : {{node.url}}</a></li>
-      {% if node.children != nil %}
-        <ul class="children">
-        {% for child in node.children %}
-          <li><a href="{{site.url}}/{{child.url}}">{{child.title}}</a></li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-  </ul>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+      {% assign sorted_pages = site.pages | sort:"title" | sort:"in_menu" %}
+
+      {% for node in sorted_pages %}
+        {% if node.in_menu != nil %}
+          <li><a href="{{node.url | remove: 'index.html'}}">{{node.title}}</a></li>
+          {% if node.children != nil %}
+            <ul class="dropdown-menu">
+            {% for child in node.children %}
+              <li><a href="{{site.url}}/{{child.url | remove: 'index.html'}}">{{child.title}}</a></li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>

@@ -5,13 +5,17 @@ post: true
 
 {% if page.draft != true %}
 
-  <h1>{{ page.title }}</h1>
-  {% if page.subtitle != nil %}<h2 class="subtitle">{{ page.subtitle }}</h2>{% endif %}
-  <time>{{ page.date | date_to_string }}</time>
+  <main class="container">
+    
+    <h1>{{ page.title }}</h1>
+    {% if page.subtitle != nil %}<h2 class="subtitle">{{ page.subtitle }}</h2>{% endif %}
+    <time>{{ page.date | date_to_string }}</time>
 
-  <article>
-  {{ content }}
-  </article>
+    <article>
+    {{ content }}
+    </article>
+
+  </main>
 
 {% else %}
   {% include base/404.html %}

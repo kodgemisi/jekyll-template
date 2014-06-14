@@ -21,10 +21,10 @@ assets:
   css_compressor: scss
   sources:
   - _assets
-  - _vendors
   - _assets/images
   - _assets/javascripts
   - _assets/stylesheets
+  - _vendor
 
 gems:
   - jekyll-compass

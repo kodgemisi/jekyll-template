@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Draft page"
 categories: news development
 tags: draft-post blog-post
 draft: true

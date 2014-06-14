@@ -1,17 +1,25 @@
 ---
 layout: default
-title: Your New Jekyll Site
+title: Home
+in_menu: 1
 ---
 
-<main>
-  <h1>All posts including drafts</h1>
+<main class="container">
+  <div class="row">
+    <section class="col-sm-12">
+      <h2>Hi there!</h2>
+      <p>Here is the home page.</p>
+    </section>
 
-  <section id="posts">
-    <ul>
-      {% for post in site.posts %}
-        <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-      {% endfor %}
-    </ul>
-  </section>
-
+    <section id="posts" class="col-sm-12">
+      <h2>All posts</h2>
+      <ul>
+        {% for post in site.posts %}
+          {% unless post.draft %}
+            <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
 </main>

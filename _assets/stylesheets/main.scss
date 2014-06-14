@@ -1,6 +1,33 @@
 html, body { height: 100%; }
 
+$footer-height: 50px;
+
 body {
   font-size: 14pt;
   font-family: sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+#footerPusher {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -$footer-height; 
+}
+#footerPusher:after {
+  content: "";
+  display: block;
+}
+footer, #footerPusher:after {
+  /* .push must be the same height as footer */
+  height: $footer-height; 
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid #eeeeee;
+  line-height: $footer-height - 1; /* minus 1 to prevent that unnecessary vertical scroll */
+  color: gray;
 }
