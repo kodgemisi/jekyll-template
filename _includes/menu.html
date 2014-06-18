@@ -26,7 +26,7 @@ Attention: This menu works with either with pages or posts but NOT with both. By
 Inspired from: http://stackoverflow.com/a/16625534/878361
 -->
 
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default {{page.menu_class}}" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -36,7 +36,6 @@ Inspired from: http://stackoverflow.com/a/16625534/878361
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,17 +45,36 @@ Inspired from: http://stackoverflow.com/a/16625534/878361
       {% assign sorted_pages = site.pages | sort:"title" | sort:"in_menu" %}
 
       {% for node in sorted_pages %}
-        {% if node.in_menu != nil %}
-          <li><a href="{{node.url | remove: 'index.html'}}">{{node.title}}</a></li>
-          {% if node.children != nil %}
-            <ul class="dropdown-menu">
-            {% for child in node.children %}
-              <li><a href="{{site.url}}/{{child.url | remove: 'index.html'}}">{{child.title}}</a></li>
-            {% endfor %}
-            </ul>
-          {% endif %}
+
+        {% assign is_a_page = false %} {%  if node.url contains '/page' %} {% assign is_a_page = true %} {% endif%}
+
+        {% if node.in_menu != nil and is_a_page == false %}
+          <li class="{% if node.children != nil %}dropdown{% endif %} {{node.menu_class}} {% if page.url == node.url or (node.url contains '/blog/' and page.in_blog) %}active{% endif %} ">
+            
+            <a href="{{node.url | remove: 'index.html'}}" {% if node.children != nil %}class="dropdown-toggle" data-toggle="dropdown"{% endif %} >
+              {{node.menu_name}}
+              {% if node.children != nil %}<b class="caret"></b>{% endif %}
+            </a>
+
+            {% if node.children != nil %}
+              <ul class="dropdown-menu">
+              {% for child in node.children %}
+                <li class="{{child.menu_class}}"><a href="{{site.url}}/{{child.url | remove: 'index.html'}}">{{child.name}}</a></li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+
+          </li>
         {% endif %}
       {% endfor %}
+      </ul>
+
+      <ul class="nav navbar-nav social-icons">
+        <li><a href="#" rel="nofollow" target="_blank"><i class="font-icons icon-twitter"></i></a></li>
+        <li><a href="#" rel="nofollow" target="_blank"><i class="font-icons icon-github"></i></a></li>
+        <li><a href="#" rel="nofollow" target="_blank"><i class="font-icons icon-linkedin"></i></a></li>
+        <li><a href="#" rel="nofollow" target="_blank"><i class="font-icons icon-facebook"></i></a></li>
+        <li><a href="#" rel="nofollow" target="_blank"><i class="font-icons icon-gplus"></i></a></li>
       </ul>
 
     </div><!-- /.navbar-collapse -->

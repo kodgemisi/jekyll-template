@@ -1,12 +1,13 @@
 ---
 layout: default
 title: Category
+in_blog: true
 ---
 
 {% assign current_category = page.url | replace: '/index.html', '' | split:'/' | last %}
 
-<main>
-  <h1>Category: {{current_category}}</h1>
+<main class="container">
+  <h2>Category: {{current_category}}</h2>
 
   {% for post in site.categories[current_category] %}
     {% unless post.draft %}

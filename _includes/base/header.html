@@ -2,6 +2,24 @@
 
   <header class="container">
 
+    <!--
+        SEO:
+        To ensure there is only one h1 tag on the page.
+        We use h1 for site title if the page is not a blog post. If the page is a blog post then
+      we use h1 to promote post title and use a div for site title.
+
+        It's advised by Google to have exactly one h1 tag per page.
+    -->
+    {% if page.post or page.has_h1 %}
+      <div id="siteTitle" itemprop="author" itemscope itemtype="http://schema.org/Organization">
+        <a href="/" itemprop="name">{{ site.name }}</a> <span class="slogan">{{ site.slogan }}</span>
+      </div>
+    {% else %}
+      <h1 id="siteTitle" itemprop="author" itemscope itemtype="http://schema.org/Organization">
+        <a href="/" itemprop="name">{{ site.name }}</a> <span class="slogan">{{ site.slogan }}</span>
+      </h1>
+    {% endif %}
+
     {% include menu.html %}
 
   </header>

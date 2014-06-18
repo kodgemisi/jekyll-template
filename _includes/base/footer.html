@@ -1,7 +1,25 @@
 </div><!-- Opens in header.html #footerPusher -->
 
+<!--
+Google+ linking
+================
+
+For local businesses and pages: <a href="https://plus.google.com/108218279550020688371" rel="publisher">Kod Gemisi</a>
+More info: https://support.google.com/business/answer/4569085
+
+For individuals: <a href="http://plus.google.com/+DestanSarpkaya?rel=author">Doruk Destan Sarpkaya</a>
+More info: https://plus.google.com/authorship
+
+-->
+
 <footer class="container">
-  © Kod Gemisi 2014
+  © <a href="https://plus.google.com/108218279550020688371" rel="publisher">Kod Gemisi</a> 2014
+  <div id="buildVersion">build:{% build_version %}</div>
 </footer>
 
-{% javascript application %}
+{{ 'application' | javascript }}
+
+<!-- Include page specific scripts if any -->
+{% for script in page.scripts %}
+  {{ script | javascript }}
+{% endfor %}

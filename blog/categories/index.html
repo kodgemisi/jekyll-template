@@ -1,17 +1,15 @@
 ---
 layout: default
 title: Categories
-available_categories:
-  - Development,development
-  - News,news
+in_blog: true
 ---
 
 <main class="container">
 
-  <h1>Categories</h1>
+  <h2>Categories</h2>
   <ul>
-    {% for categ in page.available_categories %}
-      <li><a href="{{categ | split: ',' | last}}">{{categ | split: ',' | first}}</a></li>
+    {% for category in site.categories %}
+      <li><a href="/blog/categories/{{ category | first }}">{{ category | first | capitalize }}</a></li>
     {% endfor %}
   </ul>
 

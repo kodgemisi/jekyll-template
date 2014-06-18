@@ -1,15 +1,15 @@
 # Site settings
 title: Ultimate Jekyll Template
-name: Your New Jekyll Site
+name: Jekyll Template
+slogan: with a lot of ready to use features...
+description: "KodGemisi Jekyll Template"
 
 highlighter: pygments
 timezone: Asia/Istanbul
 permalink: /blog/:title
 paginate_path: "blog/page:num"
-paginate: 11
+paginate: 10
 
-email: selam@kodgemisi.com
-description: "KodGemisi Jekyll Template"
 destination: '../static' # If this folder is inside the project then asset pipeline enters infinite loop
 url: "http://ozg.com:4000"
 
